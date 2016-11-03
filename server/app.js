@@ -6,10 +6,20 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
+const mongoose = require('mongoose')
+const session = require('express-session')
+const passport = require('passport')
+const LocalStrategy = require('passport-local').Strategy
+
 const routes = require('./routes/index');
 const api = require('./routes/api');
 
 const app = express();
+
+// MONGODB AND MONGOOSE
+mongoose.Promise = global.Promise
+mongoose.connect('mongodb://localhost/comicute')
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,8 +34,23 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors())
 
+// -----------------------------------------------------------------------------
+// ROUTE AND PASSPORT CONFIGURATION
+// -----------------------------------------------------------------------------
+
+app.use(session({secret: 'secret', resave: false, saveUninitialized: false}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
 app.use('/', routes);
 app.use('/api', api);
+// TODO: Activate when model user from database has been created (ModelUser is a variable)
+// passport.use(new LocalStrategy(ModelUser.authenticate()))
+
+// BIND PASSPORT WITH USER MODEL (PASSPORT-LOCAL-MONGOOSE)
+// passport.serializeUser(ModelUser.serializeUser())
+// passport.deserializeUser(ModelUser.deserializeUser())
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
