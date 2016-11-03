@@ -1,0 +1,21 @@
+{
+  "name": "comicute-client",
+  "homepage": "https://github.com/blanford-fox-2016/comicute",
+  "authors": [
+    "Ahyana Rizky Pratama <ahyana.rizky@gmail.com>"
+  ],
+  "description": "client side of comicute",
+  "main": "index.html",
+  "keywords": [
+    "client",
+    "comicute"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
