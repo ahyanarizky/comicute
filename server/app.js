@@ -17,7 +17,8 @@ const routes = require('./routes/index');
 const apiUser = require('./routes/apiUser');
 const apiFile = require('./routes/apiFile');
 const app = express();
-
+const File = require('./models/files');
+const ModelUser = require('./models/users');
 // MONGODB AND MONGOOSE
 mongoose.Promise = global.Promise
 mongoose.connect(process.env.DATABASE)
@@ -43,12 +44,12 @@ app.use(passport.session())
 app.use('/', routes);
 app.use('/api/user', apiUser);
 app.use('/api/file', apiFile);
-// TODO: Activate when model user from database has been created (ModelUser is a variable)
-// passport.use(new LocalStrategy(ModelUser.authenticate()))
+
+passport.use(new LocalStrategy(ModelUser.authenticate()))
 
 // BIND PASSPORT WITH USER MODEL (PASSPORT-LOCAL-MONGOOSE)
-// passport.serializeUser(ModelUser.serializeUser())
-// passport.deserializeUser(ModelUser.deserializeUser())
+passport.serializeUser(ModelUser.serializeUser())
+passport.deserializeUser(ModelUser.deserializeUser())
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
@@ -64,10 +65,7 @@ app.use((req, res, next) => {
 if (app.get('env') === 'development') {
     app.use((err, req, res, next) => {
         res.status(err.status || 500);
-        res.send({
-            message: err.message,
-            error: err
-        });
+        res.send({message: err.message, error: err});
     });
 }
 
@@ -75,10 +73,7 @@ if (app.get('env') === 'development') {
 // no stacktraces leaked to user
 app.use((err, req, res, next) => {
     res.status(err.status || 500);
-    res.send({
-        message: err.message,
-        error: {}
-    });
+    res.send({message: err.message, error: {}});
 });
 
 module.exports = app;

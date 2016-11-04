@@ -5,11 +5,13 @@ const User = require('../models/users')
 
 module.exports = {
 
-//    get user
+    //    get user
     getUser: (req, res) => {
         User.find({}, (err, data) => {
-            if (err) res.json(err)
-            else res.json(data)
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
         })
     },
 
@@ -25,28 +27,34 @@ module.exports = {
         }
 
         User.create(user, (err, data) => {
-            if (err) res.json(err)
-            else res.json(data)
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
         })
     },
 
-//    delete user
+    //    delete user
     deleteUser: (req, res) => {
         User.findOneAndRemove({
             _id: req.params.id
         }, (err, data) => {
-            if (err) res.json(err)
-            else res.json(data)
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
         })
     },
 
-//    get user data for edit
+    //    get user data for edit
     getUserById: (req, res) => {
         User.findOne({
             _id: req.params.id
         }, (err, data) => {
-            if (err) res.json(err)
-            else res.json(data)
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
         })
     },
 
@@ -65,8 +73,10 @@ module.exports = {
             new: true,
             upsert: true
         }, (err, data) => {
-            if (err) res.json(err)
-            else res.json(data)
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
         })
     }
 }

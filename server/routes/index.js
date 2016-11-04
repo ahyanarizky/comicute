@@ -1,9 +1,10 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
+const controller = require('../controller/authController')
+const passport = require('passport')
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
+router.get('/auth', controller.formRegisterAndLogin)
+router.post('/auth/login', passport.authenticate('local'), controller.processLogin)
+router.post('/auth/register', controller.proccessRegister)
 
 module.exports = router;
