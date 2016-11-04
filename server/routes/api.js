@@ -12,7 +12,7 @@ router.put('/user/update/:id', controller.updateUser) //update user
 router.get('/comic', controller.getComic) //get all comics
 router.post('/comic/create', controller.addComic) //add comic
 router.delete('/comic/delete/:id', controller.deleteComic) //delete comic with id
-router.get('/comic/:id') //get comic data for edit
+router.get('/comic/:id', controller.getComicById) //get comic data for edit
 router.put('/comic/update') //update comic
 
 

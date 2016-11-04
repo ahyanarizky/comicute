@@ -106,8 +106,13 @@ module.exports = {
     },
 
 //    get comic data for edit
-    getEditComic: function () {
-
+    getComicById: function (req, res) {
+        Comic.findOne({
+            _id: req.params.id
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
 //    edit comic
