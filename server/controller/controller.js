@@ -51,8 +51,22 @@ module.exports = {
     },
 
     //edit user
-    editUser: function () {
-
+    updateUser: function (req, res) {
+        User.findOneAndUpdate({
+            _id: req.params.id
+        }, {
+            name: req.body.name,
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
+            role: req.body.role
+        }, {
+            new: true,
+                upsert: true
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
 //    COMICS MODELS
