@@ -4,7 +4,7 @@ const controller = require('../controller/controller');
 
 
 router.get('/user') //get all users
-router.post('/user/create') //add user
+router.post('/user/create', controller.addUser) //add user
 router.delete('/user/:id') //delete user with id
 router.get('/user/:id') //get user data for edit
 router.put('/user/update') //update user

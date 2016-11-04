@@ -19,7 +19,7 @@ const app = express();
 
 // MONGODB AND MONGOOSE
 mongoose.Promise = global.Promise
-mongoose.connect('mongodb://localhost/comicute')
+mongoose.connect(process.env.DATABASE)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
