@@ -6050,7 +6050,8 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
     letter-spacing: 2px;
     font-size: 40px;
-    font-family: "Pacifico", cursive; }
+    font-family: "Pacifico", cursive;
+    height: 60px; }
     #fh5co-header .navbar-brand:hover {
       color: #404040; }
     @media screen and (max-width: 480px) {

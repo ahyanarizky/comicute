@@ -345,9 +345,11 @@ h1, h2, h3, h4, h5, h6 {
 		letter-spacing: 2px;
 		font-size: 40px;
 		font-family: $font-pacifico;
+    height: 60px;
 		&:hover {
 			color: lighten($brand-black, 25%);
 		}
+
 		@media screen and (max-width: $screen-xs) {
 			float: left!important;
 			margin: inherit;
