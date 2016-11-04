@@ -2,10 +2,10 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controller/controller');
 
-router.get('/comic', controller.getComic) //get all comics
-router.post('/comic/create', controller.addComic) //add comic
-router.delete('/comic/delete/:id', controller.deleteComic) //delete comic with id
-router.get('/comic/:id', controller.getComicById) //get comic data for edit
-router.put('/comic/update/:id', controller.updateComic) //update comic
+router.get('/', controller.getComic) //get all comics
+router.post('/', controller.addComic) //add comic
+router.delete('/:id', controller.deleteComic) //delete comic with id
+router.get('/:id', controller.getComicById) //get comic data for edit
+router.put('/:id', controller.updateComic) //update comic
 
 module.exports = router;
