@@ -72,13 +72,24 @@ module.exports = {
 //    COMICS MODELS
 
 //    get comic
-    getComic: function () {
+    getComic: function (req, res) {
 
     },
 
 //    add comic
-    addComic: function () {
+    addComic: function (req, res) {
+        const comic = {
+            title: req.body.title,
+            description: req.body.description,
+            author: req.body.author,
+            photoPath: req.body.photoPath,
+            filePath: req.body.filePath
+        }
 
+        Comic.create(comic, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
 //    delete comic
