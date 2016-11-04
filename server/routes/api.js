@@ -6,7 +6,7 @@ const controller = require('../controller/controller');
 router.get('/user', controller.getUser) //get all users
 router.post('/user/create', controller.addUser) //add user
 router.delete('/user/delete/:id', controller.deleteUser) //delete user with id
-router.get('/user/:id') //get user data for edit
+router.get('/user/:id', controller.getUserById) //get user data for edit
 router.put('/user/update') //update user
 
 router.get('/comic') //get all comics

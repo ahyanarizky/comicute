@@ -41,8 +41,13 @@ module.exports = {
     },
 
 //    get user data for edit
-    getEditUser: function () {
-
+    getUserById: function (req, res) {
+        User.findOne({
+            _id: req.params.id
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
     //edit user
