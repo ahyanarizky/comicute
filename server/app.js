@@ -15,9 +15,9 @@ const LocalStrategy = require('passport-local').Strategy
 
 const routes = require('./routes/index');
 const apiUser = require('./routes/apiUser');
-const apiComic = require('./routes/apiComic');
+const apiFile = require('./routes/apiFile');
 const app = express();
-const Comic = require('./models/comics');
+const File = require('./models/files');
 const ModelUser = require('./models/users');
 // MONGODB AND MONGOOSE
 mongoose.Promise = global.Promise
@@ -43,7 +43,7 @@ app.use(passport.session())
 
 app.use('/', routes);
 app.use('/api/user', apiUser);
-app.use('/api/comic', apiComic);
+app.use('/api/file', apiFile);
 
 passport.use(new LocalStrategy(ModelUser.authenticate()))
 
