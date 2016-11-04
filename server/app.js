@@ -42,7 +42,7 @@ app.use(passport.session())
 
 app.use('/', routes);
 app.use('/api/user', apiUser);
-app.use('/api/file', apiComic);
+app.use('/api/file', apiFile);
 // TODO: Activate when model user from database has been created (ModelUser is a variable)
 // passport.use(new LocalStrategy(ModelUser.authenticate()))
 
