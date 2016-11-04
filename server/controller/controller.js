@@ -31,8 +31,13 @@ module.exports = {
     },
 
 //    delete user
-    deleteUser: function () {
-
+    deleteUser: function (req, res) {
+        User.findOneAndRemove({
+            _id: req.params.id
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
 //    get user data for edit
