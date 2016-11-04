@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/users')
+const Comic = require('../models/comics')
 
 module.exports = {
 
@@ -11,8 +12,19 @@ module.exports = {
     },
 
     //add user
-    addUser: function () {
+    addUser: function (req, res) {
+        const user = {
+            name: req.body.name,
+            username: req.body.username,
+            password: req.body.password,
+            email: req.body.email,
+            role: req.body.role
+        }
 
+        User.create(user, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
 //    delete user
