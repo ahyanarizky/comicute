@@ -7,8 +7,11 @@ module.exports = {
 
 //    USERS MODEL
 //    get user
-    getUser: function () {
-
+    getUser: function (req, res) {
+        User.find({}, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
     //add user
