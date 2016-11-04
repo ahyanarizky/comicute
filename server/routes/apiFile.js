@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controller/controller');
+const controller = require('../controller/fileController');
 
 router.get('', controller.getFiles) //get all files
 router.post('/', controller.addFile) //add file
