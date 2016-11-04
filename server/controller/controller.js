@@ -73,7 +73,10 @@ module.exports = {
 
 //    get comic
     getComic: function (req, res) {
-
+        Comic.find({}, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
 //    add comic
