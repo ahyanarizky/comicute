@@ -1,5 +1,5 @@
 # comicute
-Project Phase 2 Second Week Blandford Fox  
+Project Phase 2 Second Week Blandford Fox. Comicute is a special place for comic or cartoon artist and enthusiast. Share your comics and artworks at Comicute!
 
 ### Members
 * Ahyana Rizky Pratama
@@ -8,12 +8,20 @@ Project Phase 2 Second Week Blandford Fox
 * Toni Chen
 
 ### Routes
+Default host and route is `http://localhost:3000`
+
 Endpoint | Http | Description
 ---------|------|------------
-|`http://localhost:3000/api/` |GET | Get database content |
-|`http://localhost:3000/api/`|POST| Add new document to database|
-|`http://localhost:3000/api/`|PUT | Update database document|
-|`http://localhost:3000/api/`|DELETE | Delete database document|
+|`/api/user` | GET | Get all user documents from database |
+|`/api/user`| POST | Add a new user document to database |
+|`/api/user/:id`| PUT | Update a user document from database |
+|`/api/user/:id`| DELETE | Delete a user document form database |
+|`/api/comic` | GET | Get database content |
+|`/api/comic`| POST| Add new document to database|
+|`/api/comic/:id`| PUT | Update database document|
+|`/api/comic/:id`| DELETE | Delete database document|
+|`/auth/login`| POST | User login |
+|`/auth/register`| POST | User registration |
 
 ### package.json - SERVER SIDE
 ```src
