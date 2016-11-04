@@ -18,7 +18,7 @@ const apiUser = require('./routes/apiUser');
 const apiComic = require('./routes/apiComic');
 const app = express();
 const Comic = require('./models/comics');
-const User = require('./models/users');
+const ModelUser = require('./models/users');
 // MONGODB AND MONGOOSE
 mongoose.Promise = global.Promise
 mongoose.connect(process.env.DATABASE)
@@ -45,11 +45,11 @@ app.use('/', routes);
 app.use('/api/user', apiUser);
 app.use('/api/comic', apiComic);
 
-passport.use(new LocalStrategy(User.authenticate()))
+passport.use(new LocalStrategy(ModelUser.authenticate()))
 
 // BIND PASSPORT WITH USER MODEL (PASSPORT-LOCAL-MONGOOSE)
-passport.serializeUser(User.serializeUser())
-passport.deserializeUser(User.deserializeUser())
+passport.serializeUser(ModelUser.serializeUser())
+passport.deserializeUser(ModelUser.deserializeUser())
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

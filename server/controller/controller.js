@@ -3,19 +3,27 @@ const router = express.Router()
 const User = require('../models/users')
 const Comic = require('../models/comics')
 
+let formRegisterAndLogin = (req, res, next) => {}
+
+let processLogin = (req, res, next) => {}
+
+let proccessRegister = (req, res, next) => {}
+
 module.exports = {
 
-//    USERS MODEL
-//    get user
-    getUser: function (req, res) {
-        User.find({}, function (err, data) {
-            if (err) res.json(err)
-            else res.json(data)
+    //    USERS MODEL
+    //    get user
+    getUser: function(req, res) {
+        User.find({}, function(err, data) {
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
         })
     },
 
     //add user
-    addUser: function (req, res) {
+    addUser: function(req, res) {
         const user = {
             name: req.body.name,
             username: req.body.username,
@@ -24,34 +32,40 @@ module.exports = {
             role: req.body.role
         }
 
-        User.create(user, function (err, data) {
-            if (err) res.json(err)
-            else res.json(data)
+        User.create(user, function(err, data) {
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
         })
     },
 
-//    delete user
-    deleteUser: function (req, res) {
+    //    delete user
+    deleteUser: function(req, res) {
         User.findOneAndRemove({
             _id: req.params.id
-        }, function (err, data) {
-            if (err) res.json(err)
-            else res.json(data)
+        }, function(err, data) {
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
         })
     },
 
-//    get user data for edit
-    getUserById: function (req, res) {
+    //    get user data for edit
+    getUserById: function(req, res) {
         User.findOne({
             _id: req.params.id
-        }, function (err, data) {
-            if (err) res.json(err)
-            else res.json(data)
+        }, function(err, data) {
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
         })
     },
 
     //edit user
-    updateUser: function (req, res) {
+    updateUser: function(req, res) {
         User.findOneAndUpdate({
             _id: req.params.id
         }, {
@@ -63,24 +77,28 @@ module.exports = {
         }, {
             new: true,
             upsert: true
-        }, function (err, data) {
-            if (err) res.json(err)
-            else res.json(data)
+        }, function(err, data) {
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
         })
     },
 
-//    COMICS MODELS
+    //    COMICS MODELS
 
-//    get comic
-    getComic: function (req, res) {
-        Comic.find({}, function (err, data) {
-            if (err) res.json(err)
-            else res.json(data)
+    //    get comic
+    getComic: function(req, res) {
+        Comic.find({}, function(err, data) {
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
         })
     },
 
-//    add comic
-    addComic: function (req, res) {
+    //    add comic
+    addComic: function(req, res) {
         const comic = {
             title: req.body.title,
             description: req.body.description,
@@ -89,34 +107,40 @@ module.exports = {
             filePath: req.body.filePath
         }
 
-        Comic.create(comic, function (err, data) {
-            if (err) res.json(err)
-            else res.json(data)
+        Comic.create(comic, function(err, data) {
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
         })
     },
 
-//    Delete comic
-    deleteComic: function (req, res) {
+    //    Delete comic
+    deleteComic: function(req, res) {
         Comic.findOneAndRemove({
             _id: req.params.id
-        }, function (err, data) {
-            if (err) res.json(err)
-            else res.json(data)
+        }, function(err, data) {
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
         })
     },
 
-//    get comic data for edit
-    getComicById: function (req, res) {
+    //    get comic data for edit
+    getComicById: function(req, res) {
         Comic.findOne({
             _id: req.params.id
-        }, function (err, data) {
-            if (err) res.json(err)
-            else res.json(data)
+        }, function(err, data) {
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
         })
     },
 
-//    edit comic
-    updateComic: function (req, res) {
+    //    edit comic
+    updateComic: function(req, res) {
         Comic.findOneAndUpdate({
             _id: req.params.id
         }, {
@@ -128,10 +152,50 @@ module.exports = {
         }, {
             new: true,
             upsert: true
-        }, function (err, data) {
-            if (err) res.json(err)
-            else res.json(data)
+        }, function(err, data) {
+            if (err)
+                res.json(err)
+            else
+                res.json(data)
+        })
+    },
+
+    formRegisterAndLogin: function(req, res) {
+        if (req.user) {
+            res.redirect('/dashboard')
+        } else {
+            res.render('auth', {title: "comicute"})
+        }
+    },
+
+    processLogin: function(req, res) {
+        req.session.save((err) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.redirect('auth')
+            }
+        })
+    },
+    proccessRegister: function(req, res) {
+        User.register({
+            name: req.body.name,
+            username: req.body.username,
+            email: req.body.email,
+            role: req.body.role
+        }, req.body.password, function(err, result) {
+            if (err) {
+                console.log(err);
+                res.render('register', {alert: 'Registration unsuccessfull'})
+            } else {
+                passport.authenticate('local')(req, res, function() {
+                    req.session.save(function(err, next) {
+                        if (err)
+                            return next(err)
+                        res.redirect('/dashboard')
+                    })
+                })
+            }
         })
     }
-
 }
