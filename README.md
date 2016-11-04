@@ -9,6 +9,7 @@ Project Phase 2 Second Week Blandford Fox. Comicute is a special place for comic
 
 ### Routes
 Default host and route is `http://localhost:3000`
+
 Endpoint | Http | Description
 ---------|------|------------
 |`/api/user` | GET | Get all user documents from database |
