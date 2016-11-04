@@ -21,6 +21,7 @@ module.exports = {
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
+            birthdate: req.body.birthdate,
             role: req.body.role
         }
 
@@ -59,6 +60,7 @@ module.exports = {
             username: req.body.username,
             password: req.body.password,
             email: req.body.email,
+            birthdate: req.body.birthdate,
             role: req.body.role
         }, {
             new: true,
