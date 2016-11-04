@@ -62,7 +62,7 @@ module.exports = {
             role: req.body.role
         }, {
             new: true,
-                upsert: true
+            upsert: true
         }, function (err, data) {
             if (err) res.json(err)
             else res.json(data)
@@ -116,8 +116,22 @@ module.exports = {
     },
 
 //    edit comic
-    editComic: function () {
-
+    updateComic: function (req, res) {
+        Comic.findOneAndUpdate({
+            _id: req.params.id
+        }, {
+            title: req.body.title,
+            description: req.body.description,
+            author: req.body.author,
+            photoPath: req.body.photoPath,
+            filePath: req.body.filePath
+        }, {
+            new: true,
+            upsert: true
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     }
 
 }
