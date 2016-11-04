@@ -27,6 +27,10 @@ const User = new Schema({
             message: `format email salah`
         },
         unique: true
+    },
+    role: {
+        type: String,
+        required: true
     }
 })
 
