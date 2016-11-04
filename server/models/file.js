@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-var Comic = new Schema({
+var File = new Schema({
     title: {
         type: String,
         required: true,
@@ -22,7 +22,10 @@ var Comic = new Schema({
     filePath: {
         type: String,
         required: true
+    },
+    downloadCount: {
+        type: Number
     }
 })
 
-module.exports = mongoose.model('Comic', Comic)
+module.exports = mongoose.model('File', File)

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const User = require('../models/users')
-const Comic = require('../models/comics')
+const File = require('../models/file')
 
 module.exports = {
 
@@ -71,35 +71,36 @@ module.exports = {
         })
     },
 
-//    COMICS MODELS
+//    file MODELS
 
-//    get comic
-    getComic: function (req, res) {
-        Comic.find({}, function (err, data) {
+//    get File
+    getFiles: function (req, res) {
+        File.find({}, function (err, data) {
             if (err) res.json(err)
             else res.json(data)
         })
     },
 
-//    add comic
-    addComic: function (req, res) {
-        const comic = {
+//    add File
+    addFile: function (req, res) {
+        const file = {
             title: req.body.title,
             description: req.body.description,
             author: req.body.author,
             photoPath: req.body.photoPath,
-            filePath: req.body.filePath
+            filePath: req.body.filePath,
+            downloadCount: req.body.downloadCount
         }
 
-        Comic.create(comic, function (err, data) {
+        File.create(file, function (err, data) {
             if (err) res.json(err)
             else res.json(data)
         })
     },
 
-//    Delete comic
-    deleteComic: function (req, res) {
-        Comic.findOneAndRemove({
+//    Delete File
+    deleteFile: function (req, res) {
+        File.findOneAndRemove({
             _id: req.params.id
         }, function (err, data) {
             if (err) res.json(err)
@@ -107,9 +108,9 @@ module.exports = {
         })
     },
 
-//    get comic data for edit
-    getComicById: function (req, res) {
-        Comic.findOne({
+//    get File data for edit
+    getFileById: function (req, res) {
+        File.findOne({
             _id: req.params.id
         }, function (err, data) {
             if (err) res.json(err)
@@ -117,16 +118,17 @@ module.exports = {
         })
     },
 
-//    edit comic
-    updateComic: function (req, res) {
-        Comic.findOneAndUpdate({
+//    edit File
+    updateFile: function (req, res) {
+        File.findOneAndUpdate({
             _id: req.params.id
         }, {
             title: req.body.title,
             description: req.body.description,
             author: req.body.author,
             photoPath: req.body.photoPath,
-            filePath: req.body.filePath
+            filePath: req.body.filePath,
+            downloadCount: req.body.downloadCount
         }, {
             new: true,
             upsert: true

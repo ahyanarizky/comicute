@@ -9,11 +9,11 @@ router.delete('/user/delete/:id', controller.deleteUser) //delete user with id
 router.get('/user/:id', controller.getUserById) //get user data for edit
 router.put('/user/update/:id', controller.updateUser) //update user
 
-router.get('/comic', controller.getComic) //get all comics
-router.post('/comic/create', controller.addComic) //add comic
-router.delete('/comic/delete/:id', controller.deleteComic) //delete comic with id
-router.get('/comic/:id', controller.getComicById) //get comic data for edit
-router.put('/comic/update/:id', controller.updateComic) //update comic
+router.get('/file', controller.getFiles) //get all files
+router.post('/file/create', controller.addFile) //add file
+router.delete('/file/delete/:id', controller.deleteFile) //delete file with id
+router.get('/file/:id', controller.getFileById) //get file data for edit
+router.put('/file/update/:id', controller.updateFile) //update file
 
 
 module.exports = router;
