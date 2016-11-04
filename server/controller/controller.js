@@ -96,8 +96,13 @@ module.exports = {
     },
 
 //    delete comic
-    deleteComic: function () {
-
+    deleteComic: function (req, res) {
+        Comic.findOneAndRemove({
+            _id: req.params.id
+        }, function (err, data) {
+            if (err) res.json(err)
+            else res.json(data)
+        })
     },
 
 //    get comic data for edit
