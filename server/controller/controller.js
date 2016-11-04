@@ -95,7 +95,7 @@ module.exports = {
         })
     },
 
-//    delete comic
+//    Delete comic
     deleteComic: function (req, res) {
         Comic.findOneAndRemove({
             _id: req.params.id
