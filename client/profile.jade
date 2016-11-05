@@ -13,12 +13,17 @@ block content
                   a.image-popup.fh5co-board-img(href='images/img_1.jpg', title='Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos?')
                     img.img-responsive(src='images/img_1.jpg', alt='Free HTML5 Bootstrap template')
                 .fh5co-desc 
-                  h3 Name - username
-                  p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos? (Short Bio)
-                  p Birthday : 09-09-1998
-                  button.col-sm-12.btn.btn-sm.btn-success(href="#")
-                    i.icon-edit
-                    |  Edit
+                  h3 
+                    span(id="Name") Name 
+                    | - 
+                    span(id="username") username
+                  p#shortbio Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, eos? (Short Bio)
+                  p Birthday : 
+                    span#bday 09/09/1998
+                  #editProfileBtn
+                    button.col-sm-12.btn.btn-sm.btn-success(onclick="editprofile()")
+                      i.icon-edit
+                      |  Edit
                   button.col-sm-12.btn.btn-sm.btn-primary(href="#")
                     i.icon-log-out
                     |  Sign Out
@@ -80,3 +85,5 @@ block content
                     a.btn.btn-sm.btn-primary(href="#")
                       i.icon-cloud-download
                       |  Download
+                      
+    script(src='js/editprofile.js' type="text/javascript")
