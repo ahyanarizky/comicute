@@ -6,33 +6,38 @@ block content
         .col-md-8.col-md-offset-2
           h2 Sign In
           .fh5co-spacer.fh5co-spacer-sm
-          form(action='#')
+          form(method='POST' action='/auth/login')
             .row
-              form(method='post' action='')
-                .col-md-6
-                  .form-group
-                    input.form-control(type='text', name='username' placeholder='Username')
-                .col-md-6
-                  .form-group
-                    input.form-control(type='password', name='password' placeholder='Password')
-                .col-md-12
-                  .form-group
-                    button.btn.btn-primary(type='submit')
-                     | Sign In
-            
-            p Need an account?    
+              .col-md-6
+                .form-group
+                  input.form-control(type='text', name='username' placeholder='Username')
+              .col-md-6
+                .form-group
+                  input.form-control(type='password', name='password' placeholder='Password')
+              .col-md-12
+                .form-group
+                  button.btn.btn-primary(type='submit')
+                   | Sign In
+
+            p Need an account?
             h2 Register
             .fh5co-spacer.fh5co-spacer-sm
-            form(action='#')
-              .form-group
-                input.form-control(type='email', name='email', placeholder='Email Address')
+            form(method='POST' action='/auth/register')
               .form-group
                 input.form-control(type='name', name='name', placeholder='Name')
+              .form-group
+                input.form-control(type='Date', name='birthdate', placeholder='Birthdate')
+              .form-group
+                input.form-control(type='role', name='role', placeholder='Role')
+              .form-group
+                input.form-control(type='email', name='email', placeholder='Email Address')
               .form-group
                 input.form-control(type='username', name='username', placeholder='Username')
               .form-group
                 input.form-control(type='password', name='password', placeholder='Password')
               .form-group
                 input.form-control(type='password', name='confirm_password', placeholder='Confirm Password')
+              -if(alert)
+                label #{alert}
               .form-group
                 input.btn.btn-primary(type='submit', value='Register')

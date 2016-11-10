@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controller/userController');
 
-
 router.get('/', controller.getUser) //get all users
 router.post('/', controller.addUser) //add user
 router.delete('/:id', controller.deleteUser) //delete user with id

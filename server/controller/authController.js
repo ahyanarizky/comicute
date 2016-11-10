@@ -7,7 +7,7 @@ module.exports = {
         if (req.user) {
             res.redirect('/dashboard')
         } else {
-            res.render('auth', {title: "comicute"})
+            res.render('auth', { title: "comicute" })
         }
     },
 
@@ -21,25 +21,31 @@ module.exports = {
         })
     },
     proccessRegister: function(req, res) {
-        User.register({
-            name: req.body.name,
-            username: req.body.username,
-            email: req.body.email,
-            role: req.body.role
-        }, req.body.password, function(err, result) {
-            if (err) {
-                console.log(err);
-                res.render('register', {alert: 'Registration unsuccessfull'})
-            } else {
-                passport.authenticate('local')(req, res, function() {
-                    req.session.save(function(err, next) {
-                        if (err)
-                            return next(err)
-                        res.redirect('/dashboard')
+        if (req.body.password != req.body.confirm_password) {
+            res.render('auth', { alert: 'confirm password not matched' })
+        } else {
+            User.register({
+                name: req.body.name,
+                birthdate: req.body.birthdate,
+                role: req.body.role,
+                email: req.body.email,
+                username: req.body.username
+            }, req.body.password, function(err, result) {
+                if (err) {
+                    console.log(err);
+                    res.render('register', { alert: 'Registration unsuccessfull' })
+                } else {
+                    passport.authenticate('local')(req, res, function() {
+                        req.session.save(function(err, next) {
+                            if (err)
+                                return next(err)
+                                    // res.redirect('/dashboard')
+                            res.send('register good')
+                        })
                     })
-                })
-            }
-        })
+                }
+            })
+        }
     }
 
 }
