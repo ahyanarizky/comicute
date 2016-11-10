@@ -14,15 +14,15 @@ var File = new Schema({
     },
     author: {
         type: String,
-        required: true
+        // required: true
     },
     photoPath: {
         type: String,
-        required: true
+        // required: true
     },
     filePath: {
         type: String,
-        required: true
+        // required: true
     },
     downloadCount: {
         type: Number

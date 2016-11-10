@@ -17,6 +17,7 @@ module.exports = {
 
 //    add File
     addFile: (req, res) => {
+
         const file = {
             title: req.body.title,
             description: req.body.description,
@@ -25,6 +26,8 @@ module.exports = {
             filePath: req.body.filePath,
             downloadCount: req.body.downloadCount
         }
+
+        console.log(req.body)
 
         File.create(file, (err, data) => {
             if (err) res.send(err)
@@ -43,7 +46,7 @@ module.exports = {
 
                 upload(req, res, function (err) {
                     if (err) {
-                        return res.end('Error uploading file!', err)
+                        return res.end(err)
                     }
                     else if (req.file.filename) {
                         res.end(`${req.file.filename}`)

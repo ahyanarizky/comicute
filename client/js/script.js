@@ -6,7 +6,6 @@ $(document).ready(function () {
     $.ajax({
         url: "http://localhost:3000/api/file",
         success: function (data) {
-            $.extend({}, data)
             var file = []
 
             for (var i = 0; i < data.length; i++) {
@@ -29,4 +28,23 @@ $(document).ready(function () {
             rowData.append(file.join(""))
         }
     })
+})
+
+$('#uploadComic').on('click', function(e) {
+    console.log("test")
+    // $('#formulir').ajaxSubmit({
+        // error: function(res) {
+        //     console.log(`Error: ${res.status}`)
+        // },
+//         success: function(res) {
+//             console.log(res)
+//             // $("#showImg a").attr("href", `http://localhost:3000/images/${res}`)
+//             // $("#showImg img").attr("src", `http://localhost:3000/images/${res}`)
+// //                $("#status").empty()
+// //                $("#uploaded").show()
+// //                $("#uploaded a").attr("href", `images/${res}`)
+// //                $("#uploaded img").attr("src", `images/${res}`)
+//         }
+//     })
+//     e.preventDefault();
 })
