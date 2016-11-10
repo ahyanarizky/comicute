@@ -2,6 +2,8 @@
 const express = require('express')
 const router = express.Router()
 const File = require('../models/files')
+const multer = require('multer')
+
 
 module.exports = {
 
@@ -26,7 +28,32 @@ module.exports = {
 
         File.create(file, (err, data) => {
             if (err) res.send(err)
-            else res.json(data)
+            else {
+
+                const storage = multer.diskStorage({
+                    destination: function (req, file, callback) {
+                        callback(null, `public/file`)
+                    },
+                    filename: function (req, file, callback) {
+                        callback(null, `${Date.now()}-${file.originalname}`)
+                    }
+                })
+
+                const upload = multer({ storage: storage }).single('gambar')
+
+                upload(req, res, function (err) {
+                    if (err) {
+                        return res.end('Error uploading file!', err)
+                    }
+                    else if (req.file.filename) {
+                        res.end(`${req.file.filename}`)
+                    }
+                    else {
+                        res.end('Error no file!', err)
+                    }
+
+                })
+            }
         })
     },
 
